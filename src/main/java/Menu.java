@@ -10,5 +10,8 @@
  */
 public class Menu
 {
-    
+    private void primoMetodo()
+    {
+        
+    }
 }

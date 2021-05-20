@@ -18,6 +18,7 @@ public class Main
         String[] vociMenu=new String[7];
         int sceltaUtente=-1;
         Scanner tastiera=new Scanner(System.in);
+        Ordinazioni o1=new Ordinazioni();
         
         
         vociMenu[0]="Esci";
@@ -28,5 +29,7 @@ public class Main
         vociMenu[5]="Visualizza i dati delle vendite di un cliente";
         vociMenu[6]="Esporta in CSV le vendite";
         vociMenu[7]="Salva su file binario";
+        
+        
     }
 }

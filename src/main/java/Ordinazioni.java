@@ -64,4 +64,10 @@ public class Ordinazioni implements Serializable
         }
         return -1;
     }
+    
+    public int visualizzaOrdinazioni()
+    {
+        System.out.println("Ciao Masso");
+        return 0;
+    }
 }

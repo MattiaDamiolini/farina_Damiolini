@@ -1,5 +1,6 @@
 
 import java.time.LocalDateTime;
+import java.time.Month;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,7 +35,31 @@ public class Farina
         this.dataVendita = dataVendita;
         this.dataSaldo = dataSaldo;
     }
+    public Farina() 
+    {
+        this.codice = 0;
+        this.nome ="";
+        this.nominativo = "";
+        this.codiceF = "";
+        this.tipoFarina = "";
+        this.quantità = 0;
+        this.importo = 0;
+        this.dataVendita = LocalDateTime.now();
+        this.dataSaldo = LocalDateTime.of(2002, Month.MARCH, 15, 12, 50);
+    }
     
+    public Farina(Farina f1)
+    {
+        this.codice=f1.getCodice();
+        this.nome=f1.getNome();
+        this.nominativo=f1.getNominativo();
+        this.codiceF=f1.getCodiceF();
+        this.tipoFarina=f1.getTipoFarina();
+        this.quantità=f1.getQuantità();
+        this.importo=f1.getImporto();
+        this.dataVendita=f1.getDataVendita();
+        this.dataSaldo=f1.getDataSaldo();
+    }
     public int getCodice() 
     {
         return codice;

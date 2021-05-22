@@ -16,6 +16,7 @@ public class Ordinazioni implements Serializable
     //attributi
     private Farina[] ordinazioni;
     private static int NUM_MAX_FARINA=100;
+    private int farinaAggiunta;
     
     public Ordinazioni()
     {
@@ -42,4 +43,25 @@ public class Ordinazioni implements Serializable
         Ordinazioni.NUM_MAX_FARINA = NUM_MAX_FARINA;
     }
     
+    public int rimuoviOrdinazione(int codice)
+    {
+        if(ordinazioni[codice]==null)
+            return -2;
+        ordinazioni[codice]=null;
+        return codice;
+    }
+    
+    public int aggiungiOrdinazione(Farina f1)
+    {
+        
+        for(int i=0;i<ordinazioni.length;i++)
+        {
+            if(ordinazioni[i]==null)
+            {
+                farinaAggiunta++;
+                return 0;
+            }
+        }
+        return -1;
+    }
 }

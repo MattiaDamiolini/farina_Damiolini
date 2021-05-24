@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.damiolini_farina;
+package com.mycompany.farina_Damiolini;
 
 /**
  *
@@ -11,7 +11,7 @@ package com.mycompany.damiolini_farina;
  */
 public class Cliente 
 {
-    private String nome;
+        private String nome;
 	private String nominativo;
 	private String codiceFiscale;
 	

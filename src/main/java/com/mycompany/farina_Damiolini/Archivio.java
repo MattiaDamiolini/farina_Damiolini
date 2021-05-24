@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.damiolini_farina;
+package com.mycompany.farina_Damiolini;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,7 +19,7 @@ public class Archivio
 {
     private int id = 0;
 	private Vendita[] archivio;
-	private static final int NUM_FATTURE = 3;
+	private static final int NUM_FATTURE = 100;
 	
 	public Archivio() 
         {
@@ -40,11 +40,14 @@ public class Archivio
 		}
 	}
 	
-	public boolean eliminaVendita(int id) {
+	public boolean eliminaVendita(int id) 
+        {
 		
-		for (int i = 0; i < NUM_FATTURE; i++) {
+		for (int i = 0; i < NUM_FATTURE; i++) 
+                {
 			
-			if (archivio[i].getId() == id) {
+			if (archivio[i].getId() == id) 
+                        {
 				archivio[i] = null;
 				return true;
 			}
@@ -53,12 +56,15 @@ public class Archivio
 		return false;
 	}
 	
-	public Vendita[] venditeCliente(String nome) {
+	public Vendita[] venditeCliente(String nome) 
+        {
 		Vendita[] result;
 		int j = 0;
 		
-		for (int i = 0; i < NUM_FATTURE; i++) {
-			if(archivio[i].getCliente().getNome().equalsIgnoreCase(nome)) {
+		for (int i = 0; i < NUM_FATTURE; i++) 
+                {
+			if(archivio[i].getCliente().getNome().equalsIgnoreCase(nome)) 
+                        {
 				j += 1;
 			}
 		}
@@ -66,8 +72,10 @@ public class Archivio
 		result = new Vendita[j];
 		j=0;
 		
-		for (int i = 0; i < NUM_FATTURE; i++) {
-			if(archivio[i].getCliente().getNome().equalsIgnoreCase(nome)) {
+		for (int i = 0; i < NUM_FATTURE; i++) 
+                {
+			if(archivio[i].getCliente().getNome().equalsIgnoreCase(nome))
+                        {
 				result[j] = archivio[i];
 				j += 1;
 			}

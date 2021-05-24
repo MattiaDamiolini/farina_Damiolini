@@ -99,8 +99,33 @@ public class Vendita implements Serializable
 
 	public double setImporto(double importo)
         {
-                this.importo=importo;
-            return 0;
+                Vendita vendita = new Vendita();
+                int scelta = 4;
+                double esitoOperazione = 0;
+                switch(scelta)
+                {
+                    case 0:
+                    {
+                        esitoOperazione= vendita.getQtaVenduta()*1.5;
+                        break;
+                    }
+                    case 1:
+                    {
+                        esitoOperazione=vendita.getQtaVenduta()*2;
+                        break;
+                    }
+                    case 2:
+                    {
+                        esitoOperazione=vendita.getQtaVenduta()*2.5;
+                        break;
+                    }
+                    case 3:
+                    {
+                        esitoOperazione=vendita.getQtaVenduta()*4.5;
+                        break;
+                    }
+                }
+            return esitoOperazione;
 	}
 
 	public LocalDate getDataVendita()

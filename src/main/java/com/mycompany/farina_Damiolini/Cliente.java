@@ -21,6 +21,20 @@ public class Cliente
 		this.nominativo = nominativo;
 		this.codiceFiscale = codiceFiscale;
 	}
+        
+        public Cliente(Cliente c1)
+        {
+            this.nome=c1.getNome();
+            this.nominativo=c1.getNominativo();
+            this.codiceFiscale=c1.getCodiceFiscale();
+        }
+        
+        public Cliente ()
+   {
+       nome = "";
+       nominativo = "";
+       codiceFiscale = "";
+   }
 	
 	public String getNome() 
         {

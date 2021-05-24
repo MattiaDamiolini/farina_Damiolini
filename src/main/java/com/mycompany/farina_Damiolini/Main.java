@@ -22,14 +22,14 @@ public class Main
     public static void main(String[] args) {
         
         int sceltaUtente =-1;
-        int esitoOperazione;       
+        int esitoOperazione = 0;       
         Scanner tastiera= new Scanner(System.in);
         String[] vociMenu= new String[6];
-        String nomeFileCSV="libriScaffale.txt";
+        String nomeFileCSV="FarinaVenduta.txt";
         String nomeFileBinario= "scaffale.bin";
         Archivio archivio = new Archivio();
         Vendita vendita = null;
-        Cliente cliente = null;
+        Cliente cliente =null ;
         
         
         vociMenu[0] = "Esci";
@@ -39,30 +39,7 @@ public class Main
         vociMenu[4] = "Salva file";
         vociMenu[5] = "Esporta file CSV";
         
-        int scelta = 4;
-                double importo1 = 0;
-                switch(scelta)
-                {
-                    case 0:
-                    {
-                        importo1= vendita.getQtaVenduta()*1.5;
-                        break;
-                    }
-                    case 1:
-                    {
-                        importo1=vendita.getQtaVenduta()*2;
-                        break;
-                    }
-                    case 2:
-                    {
-                        importo1=vendita.getQtaVenduta()*2.5;
-                        break;
-                    }
-                    case 3:
-                    {
-                        importo1=vendita.getQtaVenduta()*4.5;
-                    }
-                }
+                
                 
         
         
@@ -105,61 +82,45 @@ public class Main
                 {
                     //aggiunta una vendita
                     vendita = new Vendita();
+                    cliente = new Cliente();
                     
-                    System.out.println("Nome del cliente-->");
-                    cliente.setNome(tastiera.nextLine());
-                    System.out.println("Inserire il codice Fiscale-->");
-                    cliente.setCodiceFiscale(tastiera.nextLine());
-                    System.out.println("Nominativo del cliente -->");
-                    cliente.setNominativo(tastiera.nextLine());
-                    System.out.println("Inserire il tipo di farina--> ");
-                    vendita.setTipoFarina(tastiera.nextLine());
-                    System.out.println("Inserire la quantità di farina in kg--> ");
-                    vendita.setQtaVenduta(tastiera.nextDouble());
-                    System.out.println("Il tuo importo da pagare è:  "+ vendita.setImporto(importo1));
-                    System.out.println("premi un pulsante per continuare.!");
-                    tastiera.nextLine();
+                        archivio.registraVendita(vendita);
+                        System.out.println("Nome del cliente-->");
+                        cliente.setNome(tastiera.nextLine());
+                        System.out.println("Inserire il codice Fiscale-->");
+                        cliente.setCodiceFiscale(tastiera.nextLine());
+                        System.out.println("Nominativo del cliente -->");
+                        cliente.setNominativo(tastiera.nextLine());
+                        System.out.println("Inserire il tipo di farina(0: grano duro; 1: grano tenero; 2:castagne; 3:mais)--> ");
+                        vendita.setTipoFarina(tastiera.nextLine());
+                        System.out.println("Inserire la quantità di farina in kg--> ");
+                        vendita.setQtaVenduta(tastiera.nextDouble());
+                        double importo1 = vendita.setImporto(esitoOperazione);
+                        System.out.println("Il tuo importo da pagare è:  "+ vendita.setImporto(importo1));
+                        tastiera.nextLine();
+                    
                     break;
                 }
+
+
                  case 2:
                 {
                     //elimina vendita
                     System.out.println("inserire il codice identificativo-->");                  
                     archivio.eliminaVendita(tastiera.nextInt());
-                    System.out.println("libro eliminato correttamente");
-                    System.out.println("premi un pulsante per continuare.");
+                    System.out.println("vendita eliminata correttamente");
                     tastiera.nextLine();
                     break;
                 
                     
                         
                 }
-                 case 4:
+                 case 3:
                 {
-                    /*//cerca libro in base  ad Autore
-                    String[] elencoTitoli;
-                    String autore;
-                    System.out.println("Autore-->");
-                    autore = tastiera.nextLine();
-                    try
-                    {
-                        elencoTitoli = s1.elencoTitoliAutore(autore);
-                         if (elencoTitoli == null)
-                        System.out.println("nessun libro di "+autore);
-                    else
-                    {
-                        for (int i=0;i<elencoTitoli.length;i++)
-                             System.out.println(elencoTitoli[i]);
-                    }
-                    }
-                    catch(EccezionePosizioneNonValida e1)
-                    {
-                        System.out.println(e1.toString());
-                    }
-                    
-                   
+                    //visualizza
+                    System.out.println(archivio.toString());
                     System.out.println("premi un pulsante per continuare.");
-                    tastiera.nextLine();*/
+                    tastiera.nextLine();
                     break;
                 }
                  case 5:

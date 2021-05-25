@@ -5,11 +5,15 @@
  */
 package com.mycompany.farina_Damiolini;
 
+import eccezioni.EccezionePosizioneNonValida;
+import eccezioni.FileException;
+import file.TextFile;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import jdk.dynalink.linker.support.Guards;
 
 /**
  *
@@ -19,12 +23,14 @@ public class Archivio
 {
     private int id = 0;
 	private Vendita[] archivio;
+        Cliente cliente = new Cliente();
 	private static final int NUM_FATTURE = 100;
 	
 	public Archivio() 
         {
 		archivio = new Vendita[NUM_FATTURE];
 	}
+        
 	
 	public void registraVendita(Vendita vendita) 
         {
@@ -63,11 +69,19 @@ public class Archivio
 		
 		for (int i = 0; i < NUM_FATTURE; i++) 
                 {
-			if(archivio[i].getCliente().getNome().equalsIgnoreCase(nome)) 
+                    if(archivio[i]!=null)
+                    {
+			if(!archivio[i].getCliente().getNome().equalsIgnoreCase(nome)) 
                         {
-				j += 1;
-			}
-		}
+			} else {
+                            j += 1;
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Nessun cliente presente");
+                    }
+                }
 		
 		result = new Vendita[j];
 		j=0;
@@ -83,6 +97,21 @@ public class Archivio
 		
 		return result;
 	}
+
+   
+    public String toString() 
+    {
+        String s="";
+            for(int i =0;i<archivio.length;i++)
+            {
+                if(archivio[i]!=null)
+                {
+                    s=s+archivio[i].toString()+"\n";
+                }
+            }
+        return s;
+    }
+        
 	
 
 	public void salvaVendite(String nomeFile) throws IOException
@@ -107,5 +136,19 @@ public class Archivio
 		return v;
 	}
 	
+        public void esportaVendite(String filePathName) throws IOException, FileException
+  {
+      Vendita vendita ;
+      TextFile f1= new TextFile(filePathName, 'W');
+      for (int i=0;i<archivio.length;i++)
+      {
+          vendita=archivio[i];
+          if(archivio!=null)
+              {
+                  f1.toFile(vendita.getId()+";"+vendita.getCliente()+";"+vendita.getTipoFarina()+";"+vendita.getQtaVenduta()+";"+vendita.getImporto());
+              }
+      }
+      f1.close(); 
+  }
 	
 }

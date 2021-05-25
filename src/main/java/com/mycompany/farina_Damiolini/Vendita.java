@@ -16,13 +16,13 @@ public class Vendita implements Serializable
 {
 	private int id;
 	private Cliente cliente;
-	private String tipoFarina;
+	private int tipoFarina;
 	private double qtaVenduta;
 	private double importo;
 	private LocalDate dataVendita;
 	private LocalDate dataSaldo = null;
 	
-	public Vendita(Cliente cliente, String tipoFarina, double qtaVenduta, double importo, LocalDate dataVendita, LocalDate dataSaldo) 
+	public Vendita(Cliente cliente, int tipoFarina, double qtaVenduta, LocalDate dataVendita, LocalDate dataSaldo) 
         {
 		this.cliente = cliente;
 		this.tipoFarina = tipoFarina;
@@ -45,7 +45,7 @@ public class Vendita implements Serializable
         {
             id=0;
             cliente=cliente;
-            tipoFarina="";
+            tipoFarina=0;
             qtaVenduta=0;
             importo=0;
             dataVendita=LocalDate.now();
@@ -72,12 +72,12 @@ public class Vendita implements Serializable
 		this.cliente = cliente;
 	}
 
-	public String getTipoFarina()
+	public int getTipoFarina()
         {
 		return tipoFarina;
 	}
 
-	public void setTipoFarina(String tipoFarina) 
+	public void setTipoFarina(int tipoFarina) 
         {
 		this.tipoFarina = tipoFarina;
 	}
@@ -90,6 +90,7 @@ public class Vendita implements Serializable
 	public void setQtaVenduta(double qtaVenduta) 
         {
 		this.qtaVenduta = qtaVenduta;
+                setImporto();
 	}
 
 	public double getImporto()
@@ -97,35 +98,31 @@ public class Vendita implements Serializable
 		return importo;
 	}
 
-	public double setImporto(double importo)
+	public void setImporto()
         {
-                Vendita vendita = new Vendita();
-                int scelta = 4;
-                double esitoOperazione = 0;
-                switch(scelta)
+                switch(tipoFarina)
                 {
                     case 0:
                     {
-                        esitoOperazione= vendita.getQtaVenduta()*1.5;
+                        importo= getQtaVenduta()*1.5;
                         break;
                     }
                     case 1:
                     {
-                        esitoOperazione=vendita.getQtaVenduta()*2;
+                        importo=getQtaVenduta()*2;
                         break;
                     }
                     case 2:
                     {
-                        esitoOperazione=vendita.getQtaVenduta()*2.5;
+                        importo=getQtaVenduta()*2.5;
                         break;
                     }
                     case 3:
                     {
-                        esitoOperazione=vendita.getQtaVenduta()*4.5;
+                        importo=getQtaVenduta()*4.5;
                         break;
                     }
                 }
-            return esitoOperazione;
 	}
 
 	public LocalDate getDataVendita()
@@ -154,7 +151,7 @@ public class Vendita implements Serializable
         {
             String s;
             
-		s= "Vendita [id=" + id + ", cliente=" + cliente + ", tipoFarina=" + tipoFarina
+		s= "Vendita [id=" + id + ", tipoFarina=" + tipoFarina
 				+ ", qtaVenduta=" + qtaVenduta + ", importo=" + importo + ", dataVendita=" + dataVendita
 				+ ", dataSaldo=" + dataSaldo + "]";
                  return s;

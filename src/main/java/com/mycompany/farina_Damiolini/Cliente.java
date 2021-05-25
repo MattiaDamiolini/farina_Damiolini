@@ -68,7 +68,9 @@ public class Cliente
 
 	public String toString() 
         {
-		return "Cliente [nome ="+ nome + ", nominativo=" + nominativo + ", codiceFiscale=" + codiceFiscale + "]";
+            String s;
+		s= "Cliente [nome ="+ nome + ", nominativo=" + nominativo + ", codiceFiscale=" + codiceFiscale + "]";
+                return s;
 	}
 }
 

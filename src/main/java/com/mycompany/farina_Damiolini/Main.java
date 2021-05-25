@@ -10,8 +10,11 @@ import eccezioni.EccezionePosizioneNonVuota;
 import eccezioni.EccezionePosizioneVuota;
 import eccezioni.FileException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,15 +41,8 @@ public class Main
         vociMenu[3] = "Visualizza le vendite ";
         vociMenu[4] = "Salva file";
         vociMenu[5] = "Esporta file CSV";
-        
-                
-                
-        
-        
 
-		
-
-		/*try 
+		try 
                 {
 			Vendita[] vendite = archivio.caricaVendite("Vendite.bin");
 			for (int i = 0; i < vendite.length; i++) 
@@ -64,7 +60,7 @@ public class Main
                 {
 			System.out.println("Impossibile leggere dal file");
 		}
-                */
+                
     Menu menu= new Menu(vociMenu);   
         do
         {
@@ -84,7 +80,7 @@ public class Main
                     vendita = new Vendita();
                     cliente = new Cliente();
                     
-                        archivio.registraVendita(vendita);
+                        
                         System.out.println("Nome del cliente-->");
                         cliente.setNome(tastiera.nextLine());
                         System.out.println("Inserire il codice Fiscale-->");
@@ -92,12 +88,12 @@ public class Main
                         System.out.println("Nominativo del cliente -->");
                         cliente.setNominativo(tastiera.nextLine());
                         System.out.println("Inserire il tipo di farina(0: grano duro; 1: grano tenero; 2:castagne; 3:mais)--> ");
-                        vendita.setTipoFarina(tastiera.nextLine());
+                        vendita.setTipoFarina(tastiera.nextInt());
                         System.out.println("Inserire la quantità di farina in kg--> ");
                         vendita.setQtaVenduta(tastiera.nextDouble());
-                        double importo1 = vendita.setImporto(esitoOperazione);
-                        System.out.println("Il tuo importo da pagare è:  "+ vendita.setImporto(importo1));
+                        System.out.println("Il tuo importo da pagare è:  "+ vendita.getImporto());
                         tastiera.nextLine();
+                        archivio.registraVendita(vendita);
                     
                     break;
                 }
@@ -123,93 +119,37 @@ public class Main
                     tastiera.nextLine();
                     break;
                 }
-                 case 5:
+                 case 4:
                 {
-                    /*System.out.println(s1.toString()); 
-                    System.out.println("premi un pulsante per continuare.");
-                    tastiera.nextLine();*/
-                    break;
+                    try 
+                        {
+                            archivio.salvaVendite(nomeFileBinario);
+                            System.out.println("Dati salvati correttamente");
+                        } catch (IOException ex) 
+                        {
+                            System.out.println("Impossibile accedere al file in scrittura");
+                        }
                 }
-                 case 6:
+                 
+                case 5: 
                  {
-                     /*try
-                     {
-                         System.out.println(s1.elencoAlfabeticoLibri());
-                     }
-                     catch(EccezionePosizioneNonValida e1)
-                     {
-                         System.out.println(e1.toString());
-                     }
-                     */
-                     break;
-                 }
-                 case 7:
-                 {/*
-                     Libro[] elencoLibri;
                      try
                      {
-                         elencoLibri=s1.elencoLibriOrdinatiPrezzo();
-                     for(int i=0;i<elencoLibri.length;i++)
-                     {
-                         System.out.println(elencoLibri[i].toString() +" € " + elencoLibri[i].prezzo());
-                     }
-                     }
-                     catch(EccezionePosizioneNonValida e1)
-                     {
-                         System.out.println(e1.toString());
-                     }
-                     */
-                     break;
-                 }
-                 case 8:
-                 {/*
-                     Libro[] elencoLibri;
-                     try
-                     {
-                         elencoLibri=s1.elencoLibriAlfabeticoAutoreTitolo();
-                     for(int i=0;i<elencoLibri.length;i++)
-                     {
-                         System.out.println(elencoLibri[i].toString() +" € " + elencoLibri[i].prezzo());
-                     }
-                     }
-                     catch(EccezionePosizioneNonValida e1)
-                     {
-                         System.out.println(e1.toString());
-                     }
-                     */
-                     break;
-                 }
-                 case 9: 
-                 {/*
-                     try
-                     {
-                         s1.esportaLibri(nomeFileCSV);
+                         archivio.esportaVendite(nomeFileCSV);
                          System.out.println("Esportazione effettuato correttamente su file CSV");
                      }
                      catch(IOException e1)
                      {
                              System.out.println("Impossibile accedere al file. i libri non sono stati salvati");
-                     }
-                     catch(EccezionePosizioneNonValida | FileException e2)
-                     {
-                         System.out.println(e2.toString());
-                     }*/
-                     break;
-                 }
-                 case 10:
-                 {/*
-                     try 
-                     {
-                         //serializzazione
-                         s1.salvaScaffale(nomeFileBinario);
-                         System.out.println("dati salvati correttamente");
                      } 
-                     catch (IOException ex) 
+                     catch (FileException ex)
                      {
-                         System.out.println("Impossibile accedere al file. i dati non sono stati salvati");
-                     }*/
+                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+
                      break;
                  }
+                 
             }   
             }
             catch(InputMismatchException | NumberFormatException e1)

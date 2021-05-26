@@ -171,32 +171,24 @@ public class Archivio
       f1.close(); 
   }
 	
-        public String elencoAlfabeticoVendite() throws EccezionePosizioneNonValida
-    {
-        String s=" ";
-        String[] elencoImporti =new String[getNumVendite()];
-        int c=0;
+        public Vendita[] elencoVenditeOrdinate() throws EccezionePosizioneNonValida
+   {
+       Vendita[] elencoVendite= new Vendita[getNumVendite()];
+       Vendita v1;
+       int c=0;
        
-        if(getNumVendite()==0)
-            s="Nessuna vendita presente";
-        else
-        {
-            Vendita vendita;
-            for(int i=0;i<getNumVendite();i++)
-            {
-                    if(getVendita(i)!=null)
-                    {
-                        vendita=getVendita(i);
-                        elencoImporti[c]=vendita.getImporto()+"posizione: "+i;
-                        c++;
-                }
-            }
-            elencoImporti=Ordinatore.selectionSortCrescente(elencoImporti);
-            
-            for(int i=0;i<elencoImporti.length;i++)
-                s+=elencoImporti[i]+"\n";
-        }
-        return s;
-      }
+       for(int i=0;i<NUM_FATTURE;i++)
+       {
+               v1=getVendita(i);
+               if(v1!=null)
+               {
+                  elencoVendite[c]=v1; 
+                  c++;
+ 
+           }
+       }
+       elencoVendite=Ordinatore.selectionSortVenditeCrescenti(elencoVendite);
+       return elencoVendite;
+   }
  
 }

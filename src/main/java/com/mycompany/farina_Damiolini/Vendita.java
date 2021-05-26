@@ -153,8 +153,7 @@ public class Vendita implements Serializable
             String s;
             
 		s= "Vendita [id=" + id + ", tipoFarina=" + tipoFarina
-				+ ", qtaVenduta=" + qtaVenduta + ", importo=" + importo + ", dataVendita=" + dataVendita
-				+ ", dataSaldo=" + dataSaldo + "]";
+				+ ", qtaVenduta=" + qtaVenduta + ", importo=" + importo +"]";
                  return s;
 	}
 		

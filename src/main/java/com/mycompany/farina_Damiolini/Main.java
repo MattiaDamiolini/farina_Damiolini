@@ -39,7 +39,7 @@ public class Main
         vociMenu[1] = "Aggiungi una vendita";
         vociMenu[2] = "Rimuovi una vendita ";
         vociMenu[3] = "Visualizza le vendite ";
-        vociMenu[4] = "Visualizza le vendite in ordine alfabetico";
+        vociMenu[4] = "Visualizza le vendite in ordine di importo";
         vociMenu[5] = "Salva file";
         vociMenu[6] = "Esporta file CSV";
 
@@ -113,9 +113,14 @@ public class Main
                 }
                  case 4:
                  {
+                     Vendita[] elencoVendite;
                      try
                      {
-                         System.out.println(archivio.elencoAlfabeticoVendite());
+                         elencoVendite=archivio.elencoVenditeOrdinate();
+                     for(int i=0;i<elencoVendite.length;i++)
+                     {
+                         System.out.println(elencoVendite[i].toString() );
+                     }
                      }
                      catch(EccezionePosizioneNonValida e1)
                      {

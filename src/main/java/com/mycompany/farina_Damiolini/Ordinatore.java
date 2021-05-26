@@ -12,9 +12,9 @@ package com.mycompany.farina_Damiolini;
 public class Ordinatore
 {
 
-    public static void scambia(String v[],int posizione1,int posizione2)
+    public static void scambia(Vendita v[],int posizione1,int posizione2)
     {
-        String c;
+        Vendita c;
         c=v[posizione1];
         v[posizione1]=v[posizione2];
         v[posizione2]=c;
@@ -51,7 +51,7 @@ public class Ordinatore
             }
         }
         return ordinato;
-    }*/
+    }
     
     public static String[] selectionSortCrescente(String[] a)
     {
@@ -70,7 +70,7 @@ public class Ordinatore
         return ordinato;
     }
     
-    /*public static String[] selectionSortDecrescente(String[] a)
+    public static String[] selectionSortDecrescente(String[] a)
     {
         String[] ordinato=new String[a.length];
         
@@ -85,11 +85,11 @@ public class Ordinatore
             }
         }
         return ordinato;
-    }
+    }*/
     
-    public static Libro[] selectionSortLibriPrezzoCrescente(Libro[] a)
+    public static Vendita[] selectionSortVenditeCrescenti(Vendita[] a)
     {
-        Libro[] ordinato=new Libro[a.length];
+        Vendita[] ordinato=new Vendita[a.length];
         
         for(int i=0;i<ordinato.length;i++)
             ordinato[i]=a[i];
@@ -97,14 +97,14 @@ public class Ordinatore
         {
             for(int j=i+1;j<ordinato.length;j++)
             {
-                if(ordinato[j].prezzo()<ordinato[i].prezzo())
+                if(ordinato[j].getImporto()<ordinato[i].getImporto())
                     scambia(ordinato,i,j);
             }
         }
         return ordinato;
     }
     
-    public static Libro[] selectionSortAfabeticoAutoreTitolo(Libro[] a)
+   /* public static Libro[] selectionSortAfabeticoAutoreTitolo(Libro[] a)
     {
         Libro[] ordinato=new Libro[a.length];
         

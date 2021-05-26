@@ -13,10 +13,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import jdk.dynalink.linker.support.Guards;
 
 /**
- *
+ *questa classe rappresenta un archivio. I suoi attributi sono:
+ * id <br>
+ * archivio <br>
+ * cliente <br>
+ * NUM_FATTURE
  * @author Andreina
  */
 public class Archivio 
@@ -26,10 +29,19 @@ public class Archivio
         Cliente cliente = new Cliente();
 	private static final int NUM_FATTURE = 100;
 	
+        /** 
+         * costruttore della classe archivio. Consente di stanziare un nuovoi archivio
+         */
 	public Archivio() 
         {
 		archivio = new Vendita[NUM_FATTURE];
 	}
+        
+        /**
+         * get di una vendita.
+         * @param posizione posizione dell'archivio alla vendita
+         * @return vendita || null
+         */
         public Vendita getVendita(int posizione)
         {
             if(archivio[posizione]!=null)
@@ -39,6 +51,11 @@ public class Archivio
         return null;
         }
         
+        /**
+         * get di tutte le vendite
+         * @return numero vendite
+         * @throws EccezionePosizioneNonValida se posizione non valida
+         */
         public int getNumVendite() throws EccezionePosizioneNonValida
         {
             int NVendite=0;
@@ -51,7 +68,10 @@ public class Archivio
         }
             return NVendite;
    }
-            
+            /**
+             * permette di registrare una vendita
+             * @param vendita vendita da registrare
+             */
 	public void registraVendita(Vendita vendita) 
         {
 		
@@ -66,6 +86,11 @@ public class Archivio
 		}
 	}
 	
+        /**
+         * permette di eliminare una vendita
+         * @param id parametro con il quale avviene l'eliminazione
+         * @return vendita eliminata
+         */
 	public boolean eliminaVendita(int id) 
         {
 		
@@ -82,6 +107,11 @@ public class Archivio
 		return false;
 	}
 	
+        /**
+         * consente di visualizzare le vendite di un cliente
+         * @param nome parametro con il quale avviene la visualizzazione
+         * @return result
+         */
 	public Vendita[] venditeCliente(String nome) 
         {
 		Vendita[] result;
@@ -118,7 +148,10 @@ public class Archivio
 		return result;
 	}
 
-   
+   /**
+    * permette di visualizzare una stringa dove sono inserite tutte le vendite
+    * @return stringa
+    */
     public String toString() 
     {
         String s="";
@@ -133,7 +166,11 @@ public class Archivio
     }
         
 	
-
+        /**
+         * consente di salvare le vendite su un file
+         * @param nomeFile nome del file sul quale salvare le vendite
+         * @throws IOException 
+         */
 	public void salvaVendite(String nomeFile) throws IOException
 	{
 		FileOutputStream file=new FileOutputStream(nomeFile);
@@ -143,7 +180,13 @@ public class Archivio
 		writer.flush();
 		file.close();
 	}
-	
+	/**
+         * consente di caricare il file salvato
+         * @param nomeFile nome del file da cui vengono caricati i dati
+         * @return dati dentro il file
+         * @throws IOException
+         * @throws ClassNotFoundException 
+         */
 	public Vendita[] caricaVendite(String nomeFile) throws IOException, ClassNotFoundException
 	{
 		FileInputStream file=new FileInputStream(nomeFile);
@@ -156,6 +199,12 @@ public class Archivio
 		return v;
 	}
 	
+        /**
+         * consente di esportare i dati su un file CSV
+         * @param filePathName nome del file su cui esportare i dati
+         * @throws IOException
+         * @throws FileException 
+         */
         public void esportaVendite(String filePathName) throws IOException, FileException
   {
       Vendita vendita ;
@@ -170,7 +219,11 @@ public class Archivio
       }
       f1.close(); 
   }
-	
+	/**
+         * consente di visualizzare le vendite oirdinate in base all'importo da pagare
+         * @return elenco delle vendite ordinate
+         * @throws EccezionePosizioneNonValida 
+         */
         public Vendita[] elencoVenditeOrdinate() throws EccezionePosizioneNonValida
    {
        Vendita[] elencoVendite= new Vendita[getNumVendite()];

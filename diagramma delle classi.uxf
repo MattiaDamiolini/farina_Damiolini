@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>24</y>
+      <w>360</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>CLIENTE
+--
+-nome: String
+-cognome: String
+-codiceFiscale: String
+--
++Cliente(in String nome,in String cognome,in String codiceFiscale)
++Cliente(in Cliente c1)
++Cliente ()
++getNome(): String
++setNome(in String nome):void
++getCognome(): String
++setCognome(in String cognome): void
++getCodiceFiscale():String
++setCodiceFiscale(in String codiceFiscale): void
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>128</y>
+      <w>192</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Cliente</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>608</x>
+      <y>24</y>
+      <w>376</w>
+      <h>296</h>
+    </coordinates>
+    <panel_attributes>VENDITA
+--
+-id: int
+-cliente: Cliente
+-tipoFarina: int
+-qtaVenduta: double
+-importo: double
+--
++Vendita(in Cliente cliente,in int tipoFarina,in double qtaVenduta)
++Vendita(in Vendita v)
++Vendita()
++getId():int
++setId(in int id):void
++getCliente(): Cliente
++setCliente(in Cliente cliente):void
++getTipoFarina(): int
++setTipoFarina(in int tipoFarina):void
++getQtaVenduta():double
++setQtaVenduta(in double qtaVenduta):void
++getImporto(): double
++setImporto(): void
++ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>312</y>
+      <w>152</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+Vendita[NUM_FATTURE]</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>392</y>
+      <w>360</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>ARCHIVIO
+--
+-Id: int
+-archivio: Vendita[]
+-cliente: Cliente
+-NUM_FATTURE: final int
+--
++Archivio()
++getVendita(in int posizione):Vendita
++getNumVendite():int
++registraVendita(in Vendita vendita): void
++eliminaVendita(in int id): boolean
++venditeCleinte(in String nome): Vendita
++toString(): String
++salvaVendite(in String nomeFile): void
++caricaVendite(in String nomeFile): Vendita 
++esportaVEndite(in String filePathName): void
++elencoVenditeOrdinate(): Vendita</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

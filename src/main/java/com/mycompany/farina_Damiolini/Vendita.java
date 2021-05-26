@@ -20,17 +20,13 @@ public class Vendita implements Serializable
 	private int tipoFarina;
 	private double qtaVenduta;
 	private double importo;
-	private LocalDate dataVendita;
-	private LocalDate dataSaldo = null;
 	
-	public Vendita(Cliente cliente, int tipoFarina, double qtaVenduta, LocalDate dataVendita, LocalDate dataSaldo) 
+	public Vendita(Cliente cliente, int tipoFarina, double qtaVenduta) 
         {
 		this.cliente = cliente;
 		this.tipoFarina = tipoFarina;
 		this.qtaVenduta = qtaVenduta;
 		this.importo = importo;
-		this.dataVendita = dataVendita;
-		this.dataSaldo = dataSaldo;
 	}
         public Vendita(Vendita v)
         {
@@ -38,8 +34,7 @@ public class Vendita implements Serializable
             this.tipoFarina = v.getTipoFarina();
             this.qtaVenduta = v.getQtaVenduta();
             this.importo = v.getImporto();
-            this.dataVendita = v.getDataVendita();
-            this.dataSaldo = v.getDataSaldo();
+            
         }
         
         public Vendita()
@@ -49,8 +44,7 @@ public class Vendita implements Serializable
             tipoFarina=0;
             qtaVenduta=0;
             importo=0;
-            dataVendita=LocalDate.now();
-            dataSaldo=LocalDate.now();
+          
         }
 
 	public int getId() 
@@ -126,27 +120,7 @@ public class Vendita implements Serializable
                 }
 	}
 
-	public LocalDate getDataVendita()
-        {
-		return dataVendita;
-	}
-
-	public String setDataVendita(LocalDate dataVendita) 
-        {
-		this.dataVendita = dataVendita;
-            return null;
-	}
-
-	public LocalDate getDataSaldo() 
-        {
-		return dataSaldo;
-	}
-
-	public String setDataSaldo(LocalDate dataSaldo)
-        {
-		this.dataSaldo = dataSaldo;
-            return null;
-	}
+	
 
 	public String toString() 
         {

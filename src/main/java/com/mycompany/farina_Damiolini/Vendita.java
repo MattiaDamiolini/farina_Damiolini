@@ -5,6 +5,7 @@
  */
 package com.mycompany.farina_Damiolini;
 
+import eccezioni.EccezionePosizioneNonValida;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -157,5 +158,5 @@ public class Vendita implements Serializable
                  return s;
 	}
 		
-
+    
 }

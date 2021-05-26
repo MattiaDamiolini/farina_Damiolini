@@ -27,9 +27,9 @@ public class Main
         int sceltaUtente =-1;
         int esitoOperazione = 0;       
         Scanner tastiera= new Scanner(System.in);
-        String[] vociMenu= new String[6];
+        String[] vociMenu= new String[7];
         String nomeFileCSV="FarinaVenduta.txt";
-        String nomeFileBinario= "scaffale.bin";
+        String nomeFileBinario= "Vendite.bin";
         Archivio archivio = new Archivio();
         Vendita vendita = null;
         Cliente cliente =null ;
@@ -39,16 +39,13 @@ public class Main
         vociMenu[1] = "Aggiungi una vendita";
         vociMenu[2] = "Rimuovi una vendita ";
         vociMenu[3] = "Visualizza le vendite ";
-        vociMenu[4] = "Salva file";
-        vociMenu[5] = "Esporta file CSV";
+        vociMenu[4] = "Visualizza le vendite in ordine alfabetico";
+        vociMenu[5] = "Salva file";
+        vociMenu[6] = "Esporta file CSV";
 
 		try 
                 {
 			Vendita[] vendite = archivio.caricaVendite("Vendite.bin");
-			for (int i = 0; i < vendite.length; i++) 
-                        {
-				archivio.registraVendita(vendite[i]);
-			}
 			System.out.println("Caricamento OK");
 		} 
                 catch (ClassNotFoundException e) 
@@ -79,14 +76,13 @@ public class Main
                     //aggiunta una vendita
                     vendita = new Vendita();
                     cliente = new Cliente();
-                    
-                        
+   
                         System.out.println("Nome del cliente-->");
                         cliente.setNome(tastiera.nextLine());
+                        System.out.println("Cognome del cliente del cliente -->");
+                        cliente.setCognome(tastiera.nextLine());
                         System.out.println("Inserire il codice Fiscale-->");
                         cliente.setCodiceFiscale(tastiera.nextLine());
-                        System.out.println("Nominativo del cliente -->");
-                        cliente.setNominativo(tastiera.nextLine());
                         System.out.println("Inserire il tipo di farina(0: grano duro; 1: grano tenero; 2:castagne; 3:mais)--> ");
                         vendita.setTipoFarina(tastiera.nextInt());
                         System.out.println("Inserire la quantità di farina in kg--> ");
@@ -98,7 +94,6 @@ public class Main
                     break;
                 }
 
-
                  case 2:
                 {
                     //elimina vendita
@@ -107,9 +102,6 @@ public class Main
                     System.out.println("vendita eliminata correttamente");
                     tastiera.nextLine();
                     break;
-                
-                    
-                        
                 }
                  case 3:
                 {
@@ -120,6 +112,19 @@ public class Main
                     break;
                 }
                  case 4:
+                 {
+                     try
+                     {
+                         System.out.println(archivio.elencoAlfabeticoVendite());
+                     }
+                     catch(EccezionePosizioneNonValida e1)
+                     {
+                         System.out.println(e1.toString());
+                     }
+                     
+                     break;
+                 }
+                 case 5:
                 {
                     try 
                         {
@@ -129,9 +134,10 @@ public class Main
                         {
                             System.out.println("Impossibile accedere al file in scrittura");
                         }
+                    break;
                 }
                  
-                case 5: 
+                case 6: 
                  {
                      try
                      {
@@ -140,11 +146,11 @@ public class Main
                      }
                      catch(IOException e1)
                      {
-                             System.out.println("Impossibile accedere al file. i libri non sono stati salvati");
+                             System.out.println("Impossibile accedere al file. le vendite non sono state salvate");
                      } 
                      catch (FileException ex)
                      {
-                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                         System.out.println("file non presente");
                      }
 
                      break;

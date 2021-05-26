@@ -12,27 +12,27 @@ package com.mycompany.farina_Damiolini;
 public class Cliente 
 {
         private String nome;
-	private String nominativo;
+	private String cognome;
 	private String codiceFiscale;
 	
-	public Cliente(String nome, String nominativo, String codiceFiscale) 
+	public Cliente(String nome, String cognome, String codiceFiscale) 
         {
 		this.nome = nome;
-		this.nominativo = nominativo;
+		this.cognome = cognome;
 		this.codiceFiscale = codiceFiscale;
 	}
         
         public Cliente(Cliente c1)
         {
             this.nome=c1.getNome();
-            this.nominativo=c1.getNominativo();
+            this.cognome=c1.getCognome();
             this.codiceFiscale=c1.getCodiceFiscale();
         }
         
         public Cliente ()
    {
        nome = "";
-       nominativo = "";
+       cognome = "";
        codiceFiscale = "";
    }
 	
@@ -46,14 +46,14 @@ public class Cliente
 		this.nome = nome;
 	}
 	
-	public String getNominativo() 
+	public String getCognome() 
         {
-		return nominativo;
+		return cognome;
 	}
 
-	public void setNominativo(String nominativo) 
+	public void setCognome(String cognome) 
         {
-		this.nominativo = nominativo;
+		this.cognome = cognome;
 	}
 
 	public String getCodiceFiscale() 
@@ -69,7 +69,7 @@ public class Cliente
 	public String toString() 
         {
             String s;
-		s= "Cliente [nome ="+ nome + ", nominativo=" + nominativo + ", codiceFiscale=" + codiceFiscale + "]";
+		s= "Cliente [nome ="+ nome + ", cognome=" + cognome + ", codiceFiscale=" + codiceFiscale + "]";
                 return s;
 	}
 }

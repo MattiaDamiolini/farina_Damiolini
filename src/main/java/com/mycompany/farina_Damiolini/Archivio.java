@@ -30,8 +30,28 @@ public class Archivio
         {
 		archivio = new Vendita[NUM_FATTURE];
 	}
+        public Vendita getVendita(int posizione)
+        {
+            if(archivio[posizione]!=null)
+            {
+                return new Vendita(archivio[posizione]);
+            }
+        return null;
+        }
         
-	
+        public int getNumVendite() throws EccezionePosizioneNonValida
+        {
+            int NVendite=0;
+            for(int i=0;i<NUM_FATTURE;i++)
+            {
+                 if(archivio[i]!=null)
+                {
+                   NVendite++;
+                }
+        }
+            return NVendite;
+   }
+            
 	public void registraVendita(Vendita vendita) 
         {
 		
@@ -143,7 +163,7 @@ public class Archivio
       for (int i=0;i<archivio.length;i++)
       {
           vendita=archivio[i];
-          if(archivio!=null)
+          if(vendita!=null)
               {
                   f1.toFile(vendita.getId()+";"+vendita.getCliente()+";"+vendita.getTipoFarina()+";"+vendita.getQtaVenduta()+";"+vendita.getImporto());
               }
@@ -151,4 +171,32 @@ public class Archivio
       f1.close(); 
   }
 	
+        public String elencoAlfabeticoVendite() throws EccezionePosizioneNonValida
+    {
+        String s=" ";
+        String[] elencoImporti =new String[getNumVendite()];
+        int c=0;
+       
+        if(getNumVendite()==0)
+            s="Nessuna vendita presente";
+        else
+        {
+            Vendita vendita;
+            for(int i=0;i<getNumVendite();i++)
+            {
+                    if(getVendita(i)!=null)
+                    {
+                        vendita=getVendita(i);
+                        elencoImporti[c]=vendita.getImporto()+"posizione: "+i;
+                        c++;
+                }
+            }
+            elencoImporti=Ordinatore.selectionSortCrescente(elencoImporti);
+            
+            for(int i=0;i<elencoImporti.length;i++)
+                s+=elencoImporti[i]+"\n";
+        }
+        return s;
+      }
+ 
 }
